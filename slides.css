@@ -1,0 +1,43 @@
+.slider {
+    margin-left: 40%;
+    position: relative;
+    width: 25%;
+    overflow: hidden;
+}
+.images {
+    display: flex;
+    width: 100%;
+}
+.images img {
+    border-radius: 20px;
+    height: 400px;
+    width: 100%;
+    transition: all 0.15s ease;
+}
+.images input {
+    display: none;
+}
+.dots {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+.dots label {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: solid #555050 3px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    margin: 5px;
+}
+.dots label:hover {background: #6562eb;}
+#img1:checked ~ .m1 {
+    margin-left: 0;
+}
+#img2:checked ~ .m2 {
+    margin-left: -100%;
+}
+#img3:checked ~ .m3 {
+    margin-left: -200%;
+}
