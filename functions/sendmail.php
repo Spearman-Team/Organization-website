@@ -23,7 +23,7 @@ function sendConfirmationEmail($email)
         Best regards,
         Your Company
     ";
-
+    
 
     $headers = "From: devblade10@gmail.com";
 
