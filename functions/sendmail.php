@@ -1,34 +1,41 @@
 <?php
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
+if (isset($_POST['submit'])) {
+    $username = htmlspecialchars($_POST['username']);
+    $email = htmlspecialchars($_POST['email']);
+    $phone = htmlspecialchars($_POST['phone']);
+    $subject = htmlspecialchars($_POST['subject']);
 
-    require 'PHPMailer\src\Exception.php';
-    require 'PHPMailer\src\PHPMmailer.php';
-    require 'PHPMailer\src\SMTP.php';
+    sendConfirmationEmail($email);
 
-    if(isset($_POST['send-mail'])){
-        $mail = new PHPMailer(true);
+    echo 'Form submitted successfully. You will receive a confirmation email shortly.';
+}
 
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'devblade10@gmail.com';
-        $mail->Password = 'hohpyqyzeheklkuq';
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port = 465;
-
-        $mail->setFrom('devblade10@gmail.com');
-
-        $mail->addAddress($_POST['email']);
-
-        $mail->isHTML(true);
-
-        $mail->Subject = $_POST['subject'];
-        $mail->Body = $_POST['message'];
-
-        $mail->send();
+function sendConfirmationEmail($email)
+{
+    $to = $email;
+    $subject = 'Confirmation: We will be in touch soon';
+    $message = "
+        Dear User,
+        
+        Thank you for contacting us. We have received your form submission and will be in touch with you within a few hours.
+        
+        Best regards,
+        Your Company
+    ";
 
 
+    $headers = "From: devblade10@gmail.com";
 
+    // Set the authentication details
+
+    
+    if(mail($to, $subject, $message, $headers)){
+        echo "email sent successfully";
     }
+    else {
+        echo "email not sent";
+    }
+
+}
+?>
